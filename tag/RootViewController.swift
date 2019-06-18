@@ -52,9 +52,21 @@ extension RootViewController:NFCNDEFReaderSessionDelegate {
   }
   
   func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-    detectionInfoLabel.text = "messages \(messages)"
     self.session = nil
+    guard let firstMessage = messages.first else {  return }
+    var recordString:String = ""
+    for record in firstMessage.records {
+      let recordPayLoadString:String = String(data: record.payload, encoding: .utf8) ?? "no record"
+      recordString = "\(recordString)\n\(record.typeNameFormat.rawValue):\(recordPayLoadString)"
+    }
+    DispatchQueue.main.async {
+      self.detectionInfoLabel.text = "\(recordString)"
+    }
+    
+    
   }
+  
+  
   
   
 }

@@ -214,6 +214,9 @@
 							com.apple.NearFieldCommunicationTagReading = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					C1CF65CC22B685AF00AD2F4E = {
